@@ -75,8 +75,8 @@ struct disk_info {
 
 struct write_list;
 struct write_list {
-    size_t offset;
-    size_t length;
+    off_t offset;
+    off_t length;
     void* data;
     struct write_list* next;
 };
@@ -205,7 +205,7 @@ int main ( int argc, char *argv[] )
     }
     LOGD("Disk size %s\n", len2hrs(disk.dsize));
 
-    disk.size = (uint32_t)disk.dsize/disk.sect_size;
+    disk.size = (uint32_t)(disk.dsize/disk.sect_size);
     disk.dsize = (uint64_t)disk.size * (uint64_t)disk.sect_size;
     LOGD("Disk sectors %d\n", disk.size);
 
